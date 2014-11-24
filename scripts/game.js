@@ -96,20 +96,22 @@ Config = {
     player:{
         life: 100,
         superTTL: 3000,
+        harmMultiplier: 10
     }, 
     fire: {
-        ammoPower : 5,
+        ammoPower : 0.5,
         ammoSize: [1,2,3],
-        ammoSuperSize: 3,
+        ammoSuperSize: 4,
         speedNormalMili: 3000,
         speedSuperMili: 2300        
     },
     shield: {
         speed: 400,
-        power: 5
+        power: 0.5
     },
     explosion:{
-        damage: 10
+        damage: 5,
+        quantity: 4 
     },
     egg: {
         gravity: 0.1

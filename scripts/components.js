@@ -366,7 +366,7 @@ Crafty.c('Player', {
                 $.extend( {}, commonAttr, { x: this.x-20 } );
                 
         var attackTxt = Crafty.e("Global, Text, Tween").attr( attr )
-                                                    .text( '-'+ Math.ceil(damage) )
+                                                    .text( '-'+ damage * Config.player.harmMultiplier )
                                                     .textColor( '#EBEB00', 1 )                                                                         
                                                     .textFont({ family:'Clono', size: '20px'});
         
@@ -691,9 +691,10 @@ Crafty.c( 'Egg', {
 Crafty.c( 'Explosion', {        
     player: null,
     explsionImg : null, 
-    explosionsCant : 4,
+    explosionsCant : 0,
     init: function(){        
         
+        this.explosionsCant = Config.explosion.quantity;
         this.requires( 'Global, Tween' );        
         
     },         
