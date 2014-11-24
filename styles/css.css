@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "Clono";
+    src: url('fonts/70404053-Clono-dos.eot');
+    src: url('fonts/70404053-Clono-dos.eot?#iefix') format('embedded-opentype'),
+        url('fonts/70404053-Clono-dos.svg#Clono dos') format('svg'),
+        url('fonts/70404053-Clono-dos.woff') format('woff'),
+        url('fonts/70404053-Clono-dos.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Yanone";
+    src: url('fonts/98724366-YanoneKaffeesatz-Regular.eot');
+    src: url('fonts/98724366-YanoneKaffeesatz-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/98724366-YanoneKaffeesatz-Regular.svg#Yanone Kaffeesatz') format('svg'),
+        url('fonts/98724366-YanoneKaffeesatz-Regular.woff') format('woff'),
+        url('fonts/98724366-YanoneKaffeesatz-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#container{
+    width: 100%;
+}
+
+#cr-stage{
+    
+    border: 3px solid;
+    margin: auto;
+    margin-top: 50px;
+    /*background-image: url('../sprites/background.jpg');*/
+    
+}

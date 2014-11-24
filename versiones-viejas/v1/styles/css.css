@@ -1,0 +1,11 @@
+#container{
+    width: 100%;
+}
+
+#cr-stage{
+    border: 3px solid;
+    margin: auto;
+    margin-top: 50px;
+    background-image: url('../sprites/background.jpg');
+    
+}
