@@ -118,7 +118,7 @@ Config = {
     },
     pteroAttack: {
         fligthDuration: 5000,
-        fireCounter: 5,
+        fireCounter: 20,
         randomNumbers: []
     }
     
