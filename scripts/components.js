@@ -650,7 +650,23 @@ Crafty.c( 'Egg', {
         return this;
     },
     drop: function(){
+        
+        var player = this.ptero.player;
         this.gravity("player").gravityConst( Config.egg.gravity );
+        
+        var attr = player.id === 'player1' ? { x: player.x+25, y: player.y, z:player.z+1, w:5 } : 
+                { x: player.x, y: player.y, z:player.z+1, w:5 };
+                
+        var attackTxt = Crafty.e("Global, Text, Tween").attr( attr )
+                                                    .text( "HUEVOATTACK" )
+                                                    .textColor( '#EBEB00', 1 )                                                                         
+                                                    .textFont({ family:'Clono', size: '25px'});
+        
+        
+        attackTxt.tween( {alpha: 0}, 2000  ).one('TweenEnd', function(){
+            attackTxt.destroy();
+        });
+        
     }    
 });
 
