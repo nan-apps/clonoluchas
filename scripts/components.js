@@ -55,8 +55,7 @@ Crafty.c('Player', {
     delayTriggerFire: null,
     delayWinner: null,
     lifeBar: null,
-    powerBar: null, 
-    pteroAttackCounter: 0,
+    powerBar: null,     
     spriteComponents : ['','_attack_1','_attack_2','_attack_3','_super','_superattack'],
     init: function() {
         e = this;
@@ -312,7 +311,7 @@ Crafty.c('Player', {
                                                     .textFont({ family:'VT323', size: '15px'});
         
         
-        number.tween( {alpha: 0}, Config.pteroAttack.fligthDuration  ).one('TweenEnd', function(){
+        number.tween( {alpha: 0, y: this.y - 40}, Config.pteroAttack.fligthDuration  ).one('TweenEnd', function(){
             number.destroy();
         });
         
@@ -358,8 +357,13 @@ Crafty.c('Player', {
     },
     harm: function( damage ){
         
-        if( Game.debug ) return;
-                
+        if( Game.debug ){
+            fb( 'damage:'+ damage );            
+        } 
+        
+        var self = this;
+        var life = this.life;
+        
         var commonAttr = { y: this.y+80, z:this.z+1, w:5 };
                 
         var attr = this.id === 'player1' ? $.extend( {}, commonAttr, {x: this.x+this.w+10 } )  : 
@@ -374,10 +378,24 @@ Crafty.c('Player', {
         attackTxt.tween( {alpha: 0, y:this.y}, 1000  ).one('TweenEnd', function(){
             attackTxt.destroy();
         });
-        
-        var self = this;
-        this.life = this.life - damage < 0 ? 0 : this.life - damage;
+                
+        this.life = life - damage < 0 ? 0 : life - damage;
+                
+        if( Game.debug ){
+            fb( 'life:'+ this.life );            
+        } 
+        fb(life);        
+        fb(this.life);        
+        for( var i = 0; i < Config.pteroAttack.lifeTriggers.length; i++ ){            
+            if( life >= Config.pteroAttack.lifeTriggers[i] && this.life < Config.pteroAttack.lifeTriggers[i] ){                
+                this.pteroAttack();
+                break;
+            }
+            
+        }
+                
         this.lifeBar.attr( { 'w':this.life });
+        
         if( this.id == 'player2' ){
             this.lifeBar.css( { 'margin-left':100-this.life });
         }
@@ -461,12 +479,7 @@ Crafty.c('Fire', {
         var size = 0;
         
         if( chargingTime < 0.9 ){
-            size = Config.fire.ammoSize[0]; 
-            ++this.player.pteroAttackCounter;
-            if( this.player.pteroAttackCounter > Config.pteroAttack.fireCounter ){
-                this.player.pteroAttack();
-                this.player.pteroAttackCounter = 0;
-            }
+            size = Config.fire.ammoSize[0];             
         }
         else if( chargingTime >= 0.9 && chargingTime < 1.8 ) 
             size = Config.fire.ammoSize[1];    

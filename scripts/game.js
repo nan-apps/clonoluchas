@@ -53,7 +53,7 @@ Game = {
         
         Crafty.init( this.width, this.height );    
         Crafty.canvas.init();
-        
+                
         Crafty.load(['sprites/dinos.png', 'sprites/superdinos.png', 'sprites/ptero.png', 'sprites/ammos.png', 'sprites/shields.png'], function(){
                
             Crafty.sprite(119, 108, 'sprites/dinos.png', {
@@ -118,7 +118,8 @@ Config = {
     },
     pteroAttack: {
         fligthDuration: 5000,
-        fireCounter: 20,
+        fireCounter: false,
+        lifeTriggers: [75,50,25,15,5],
         randomNumbers: []
     }
     
