@@ -98,14 +98,15 @@ Config = {
         superTTL: 3000,
     }, 
     fire: {
-        ammoPower : 0.4,
+        ammoPower : 5,
         ammoSize: [1,2,3],
         ammoSuperSize: 3,
         speedNormalMili: 3000,
         speedSuperMili: 2300        
     },
     shield: {
-        speed: 400
+        speed: 400,
+        power: 5
     },
     explosion:{
         damage: 10

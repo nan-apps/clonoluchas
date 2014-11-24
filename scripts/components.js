@@ -359,6 +359,21 @@ Crafty.c('Player', {
     harm: function( damage ){
         
         if( Game.debug ) return;
+                
+        var commonAttr = { y: this.y+80, z:this.z+1, w:5 };
+                
+        var attr = this.id === 'player1' ? $.extend( {}, commonAttr, {x: this.x+this.w+10 } )  : 
+                $.extend( {}, commonAttr, { x: this.x-20 } );
+                
+        var attackTxt = Crafty.e("Global, Text, Tween").attr( attr )
+                                                    .text( '-'+ Math.ceil(damage) )
+                                                    .textColor( '#EBEB00', 1 )                                                                         
+                                                    .textFont({ family:'Clono', size: '20px'});
+        
+        
+        attackTxt.tween( {alpha: 0, y:this.y}, 1000  ).one('TweenEnd', function(){
+            attackTxt.destroy();
+        });
         
         var self = this;
         this.life = this.life - damage < 0 ? 0 : this.life - damage;
@@ -505,13 +520,14 @@ Crafty.c('Fire', {
 
 
 Crafty.c( 'Shield', {    
-    shieldPower: 5,
+    shieldPower: 0,
     shieldState:0,    
     width: 0,
     height: 0,
     player: null,
     init: function(){        
-        this.requires( 'Global, Delay' );
+        this.shieldPower = Config.shield.power;
+        this.requires( 'Global, DOM, Delay' );
         this.attr({ z : 5 });
     },
     increaseShield: function( player ){        
@@ -639,6 +655,7 @@ Crafty.c( 'Egg', {
 
             if( e.key === Controls.numbers[ dropNumber ] ){
                 self.drop();
+                self.unbind('KeyDown');
             }
             
         }).tween( { x: tweenX }, Config.pteroAttack.fligthDuration ).bind('TweenEnd', function(){
