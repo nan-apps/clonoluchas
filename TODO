@@ -1,2 +1,4 @@
-1. decidir cuando sale el pteroAttack
-    Podria para ayudar al q va perdiendo, cuando por ej le sacan la mitad de la vida. o cuando le queda muy poquita como un ultimo recurso
+0. llega un punto q el daño deja de restar vida, ver porque.
+1. los numeros de damage salen muy rapido.
+2. hay mucha vida, dura mucho la pelea. 
+3. el huevoattack se deberia activar con una tecla unica para cada jugador, cada tecla activa el huevo de pteroAttack

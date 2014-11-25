@@ -25,12 +25,12 @@ Controls = {
     Player1 : {
         fire:65,
         shield:83,
-        jump:68 
+        dropEgg:68
     },
     Player2 : {
-        fire:75,
-        shield:76,
-        jump:74
+        fire:74,
+        shield:75,
+        dropEgg:76
     },
     numbers: {
         1:49,2:50,3:51,4:52,5:53,6:54,7:55,8:56,9:57
@@ -99,7 +99,7 @@ Config = {
         harmMultiplier: 10
     }, 
     fire: {
-        ammoPower : 0.5,
+        ammoPower : 2,
         ammoSize: [1,2,3],
         ammoSuperSize: 4,
         speedNormalMili: 3000,

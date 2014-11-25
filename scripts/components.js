@@ -84,33 +84,34 @@ Crafty.c('Player', {
         this.addComponent( id ); //setea el id como un componente, indica el sprite a uusar. 
         
         var textX = this.id == 'player1' ? 30 : Game.width - 30 - 100;
-        var controls = this.id == 'player1' ? 'Rayo:"A" Escudo:"S" ' : 'Fuego:"K" Escudo:"L" ';
+        var controls = this.id == 'player1' ? 'Rayo:"A" Escudo:"S"' : 'Fuego:"J" Escudo:"K"';
+        var controlsEgg = this.id == 'player1' ? 'HuevoAttack:"D" ' : 'HuevoAttack:"L" ';
         var playerText = this.id == 'player1' ? 'TRUENOCERATOPS' : 'FUEGOCIRRAPTOR';
         var lifeBarX = this.id == 'player1' ? 30 : Game.width - 30 - 100;
         var lifeBarContainerOpts = {
             x: lifeBarX,
-            y: 70,
+            y: 80,
             w: 100,
             h: 15,
             z:5
         };
         var lifeBarOpts = {
             x: lifeBarX + 1,
-            y: 70 + 1,
+            y: lifeBarContainerOpts.y + 1,
             w: 99,
             h: 14,
             z:7
         };
         var powerBarContainerOpts = {
             x: lifeBarX,
-            y: 90,
+            y: 100,
             w: 100,
             h: 10,
             z:5
         };
         var powerBarOpts = {
             x: lifeBarX + 1,
-            y: 90 + 1,
+            y: powerBarContainerOpts.y + 1,
             w: 0,
             h: 10,
             z:7
@@ -127,11 +128,15 @@ Crafty.c('Player', {
                                                                              .textColor( '#EBEB00', 1 )                                                                         
                                                                              .textFont({ family:'VT323', size: '15px' });
 
-            Crafty.e("Global, Text").attr({ x: textX, y: 30, z:5, w:140 }).text( controls )
+            Crafty.e("Global, Text").attr({ x: textX, y: 30, z:5, w:100 }).text( controls )
                                                                              .textColor( '#EBEB00', 1 )                                                                         
                                                                              .textFont({ family:'VT323', size: '15px' });
             
-            Crafty.e("Global, Text").attr({ x: textX, y: 45, z:5, w:140 }).text( '(Hold:Super)' )
+            Crafty.e("Global, Text").attr({ x: textX, y: 45, z:5, w:100 }).text( controlsEgg )
+                                                                             .textColor( '#EBEB00', 1 )                                                                         
+                                                                             .textFont({ family:'VT323', size: '15px' });
+            
+            Crafty.e("Global, Text").attr({ x: textX, y: 60, z:5, w:140 }).text( '(Mantener:Super)' )
                                                                              .textColor( '#EBEB00', 1 )                                                                         
                                                                              .textFont({ family:'VT323', size: '15px' });
             
@@ -298,15 +303,15 @@ Crafty.c('Player', {
     },
     pteroAttack: function(){
         
-        var randomN = SystemUtils.getRandomNumber();
-        
-        Crafty.e('PteroAttack').attack( this, randomN );
+        Crafty.e('PteroAttack').attack( this );
         
         var attr = this.id === 'player1' ? { x: this.x+25, y: this.y, z:this.z+1, w:5 } : 
                 { x: this.x, y: this.y, z:this.z+1, w:5 };
                 
+        var dropEggKey = this.id === 'player1' ? 'D' : 'L';
+        
         var number = Crafty.e("Global, Text, Tween").attr( attr )
-                                                    .text( "Press "+randomN+" for HuevoAttack" )
+                                                    .text( "Press "+dropEggKey+" for HuevoAttack" )
                                                     .textColor( '#EBEB00', 1 )                                                                         
                                                     .textFont({ family:'VT323', size: '15px'});
         
@@ -372,10 +377,9 @@ Crafty.c('Player', {
         var attackTxt = Crafty.e("Global, Text, Tween").attr( attr )
                                                     .text( '-'+ damage * Config.player.harmMultiplier )
                                                     .textColor( '#EBEB00', 1 )                                                                         
-                                                    .textFont({ family:'Clono', size: '20px'});
+                                                    .textFont({ family:'Clono', size: '20px'});        
         
-        
-        attackTxt.tween( {alpha: 0, y:this.y}, 1000  ).one('TweenEnd', function(){
+        attackTxt.tween( {alpha: 0, y:this.y}, 1500  ).one('TweenEnd', function(){
             attackTxt.destroy();
         });
                 
@@ -384,8 +388,7 @@ Crafty.c('Player', {
         if( Game.debug ){
             fb( 'life:'+ this.life );            
         } 
-        fb(life);        
-        fb(this.life);        
+             
         for( var i = 0; i < Config.pteroAttack.lifeTriggers.length; i++ ){            
             if( life >= Config.pteroAttack.lifeTriggers[i] && this.life < Config.pteroAttack.lifeTriggers[i] ){                
                 this.pteroAttack();
@@ -587,7 +590,7 @@ Crafty.c( 'PteroAttack', {
         this.requires( 'Global, Tween, SpriteAnimation, Delay' );
         this.attr({ z : 8 });
     },         
-    attack: function( player, eggNumber ){ 
+    attack: function( player ){ 
         
         var self = this;
         this.player = player;
@@ -620,7 +623,7 @@ Crafty.c( 'PteroAttack', {
             
         }).reel('PteroFlying', 250, sprites ).animate('PteroFlying', -1);            
         
-        this.egg = Crafty.e('Egg').egg( this, eggNumber );
+        this.egg = Crafty.e('Egg').egg( this );
         
         
         return this;
@@ -654,27 +657,26 @@ Crafty.c( 'Egg', {
         }); 
         
     },         
-    egg: function( ptero, dropNumber ){ 
+    egg: function( ptero ){ 
         
         var self = this;
         this.ptero = ptero;
                 
         var tweenX =  ptero.player.id === 'player1' ? ptero.tweenX : ptero.tweenX + 35;
+        var eggKey =  ptero.player.id === 'player1' ? Controls.Player1.dropEgg : Controls.Player2.dropEgg;
         
         this.attr({           
             x: ptero.player.id === 'player1' ? ptero.x : ptero.x+35,
             y: ptero.y + 60,               
         }).bind('KeyDown', function(e) {
 
-            if( e.key === Controls.numbers[ dropNumber ] ){
+            if( e.key === eggKey ){
                 self.drop();
                 self.unbind('KeyDown');
             }
             
         }).tween( { x: tweenX }, Config.pteroAttack.fligthDuration ).bind('TweenEnd', function(){
             self.destroy();
-            //remuevo el numero random del array
-            Config.pteroAttack.randomNumbers.splice( Config.pteroAttack.randomNumbers.indexOf( dropNumber ), 1 );            
         });
         
         return this;
