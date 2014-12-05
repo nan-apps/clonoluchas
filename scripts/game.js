@@ -119,7 +119,7 @@ Config = {
     pteroAttack: {
         fligthDuration: 5000,
         fireCounter: false,
-        lifeTriggers: [75,50,25,15,5],
+        lifeTriggers: [15],
         randomNumbers: []
     }
     
