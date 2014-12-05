@@ -110,7 +110,7 @@ Config = {
         power: 0.5
     },
     explosion:{
-        damage: 5,
+        damage: 6,
         quantity: 4 
     },
     egg: {
@@ -119,7 +119,7 @@ Config = {
     pteroAttack: {
         fligthDuration: 5000,
         fireCounter: false,
-        lifeTriggers: [15],
+        lifeTriggers: [30],
         randomNumbers: []
     }
     
