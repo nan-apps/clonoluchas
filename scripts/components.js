@@ -214,7 +214,8 @@ Crafty.c('Player', {
         //reset powerBar
         if( !this.superStatus ){
             this.powerBar.cancelTween('w');
-            this.powerBar.attr({w:0});            
+            this.powerBar.attr( { w : 0 } );
+            this.powerBar.css( { width:'0px' } )
             this.addComponent( this.id );
         }        
                 
