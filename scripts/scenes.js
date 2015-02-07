@@ -31,9 +31,9 @@ Crafty.scene('Fight', function() {
                                                                          .textColor( '#eeaec0', 1 )                                                                         
                                                                          .textFont({ family:'Clono', size: '30px' });
                                                                  
-    Crafty.e("Global, Text").attr({ x: Game.width-145, y: Game.height-20, z:5, w:200 }).text( 'Creado por Clonosaurios' )
+    /*Crafty.e("Global, Text").attr({ x: Game.width-145, y: Game.height-20, z:5, w:200 }).text( 'Creado por Clonosaurios' )
                                                                          .textColor( '#eeaec0', 1 )                                                                         
-                                                                         .textFont({ family:'VT323', size: '15px'});
+                                                                         .textFont({ family:'VT323', size: '15px'});*/
     
     var y = Player.h;
 
@@ -103,9 +103,9 @@ Crafty.scene('Splash', function() {
     Crafty.e("Global, Text").attr({ x: Game.width/2-80, y: 10, z:5, w:100 }).text( 'CLONOLUCHAS' )
                                                                          .textColor( '#eeaec0', 1 )                                                                         
                                                                          .textFont({ family:'Clono', size: '30px' });
-    Crafty.e("Global, Text").attr({ x: Game.width-145, y: Game.height-20, z:5, w:200 }).text( 'Creado por Clonosaurios' )
+    /*Crafty.e("Global, Text").attr({ x: Game.width-145, y: Game.height-20, z:5, w:200 }).text( 'Creado por Clonosaurios' )
                                                                          .textColor( '#eeaec0', 1 )                                                                         
-                                                                         .textFont({ family:'VT323', size: '15px'});    
+                                                                         .textFont({ family:'VT323', size: '15px'}); */   
     
     Crafty.e("Global, Image")
              .attr({w: Crafty.viewport.width, h: Crafty.viewport.height, z:1})             
@@ -157,9 +157,9 @@ Crafty.scene('winPlayer1', function() {
     Crafty.e("Global, Text").attr({ x: Game.width/2-80, y: 10, z:5, w:100 }).text( 'CLONOLUCHAS' )
                                                                          .textColor( '#eeaec0', 1 )                                                                         
                                                                          .textFont({ family:'Clono', size: '30px' });
-    Crafty.e("Global, Text").attr({ x: Game.width-145, y: Game.height-20, z:5, w:200 }).text( 'Creado por Clonosaurios' )
+   /* Crafty.e("Global, Text").attr({ x: Game.width-145, y: Game.height-20, z:5, w:200 }).text( 'Creado por Clonosaurios' )
                                                                          .textColor( '#eeaec0', 1 )                                                                         
-                                                                         .textFont({ family:'VT323', size: '15px'});    
+                                                                         .textFont({ family:'VT323', size: '15px'});   */ 
     
     var x = (Game.width / 2) ;
     var y = Player.h;
@@ -214,9 +214,9 @@ Crafty.scene('winPlayer2', function() {
     Crafty.e("Global, Text").attr({ x: Game.width/2-80, y: 10, z:5, w:100 }).text( 'CLONOLUCHAS' )
                                                                          .textColor( '#CA6686', 1 )                                                                         
                                                                          .textFont({ family:'Clono', size: '30px' });
-    Crafty.e("Global, Text").attr({ x: Game.width-145, y: Game.height-20, z:5, w:200 }).text( 'Creado por Clonosaurios' )
+    /**Crafty.e("Global, Text").attr({ x: Game.width-145, y: Game.height-20, z:5, w:200 }).text( 'Creado por Clonosaurios' )
                                                                          .textColor( '#CA6686', 1 )                                                                         
-                                                                         .textFont({ family:'VT323', size: '15px'});
+                                                                         .textFont({ family:'VT323', size: '15px'});*/
     
     var x = (Game.width / 2) ;
     var y = Player.h;
